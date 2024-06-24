@@ -6,10 +6,10 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidInputException {
         System.out.println("Значения enum: " + Arrays.toString(Animal.values()));
 
-        String[] array = {"DOG Жучка", "DOG Внучка", "DOG Бабка", "CAT Муська", "HORSE Жаба", "FROG Люська"};
+        String[] array = {"DOG Жучка", "DOG Внучка", "DOG Бабка", "CAT Муська", "HORSE Жаба"};
 
         ArrayList<String> list = new ArrayList<String>(Arrays.asList(array));
 
@@ -28,8 +28,6 @@ public class Main {
         System.out.println("Все животные на ферме: " + animalFarm.getFarmAnimals());
 
         System.out.println("Перечень животных: \n" + animalFarm);
-
-        animalFarm.isSpacePresented("DOG");
 
 
 

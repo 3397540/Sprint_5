@@ -32,24 +32,28 @@ public class AnimalFarm {
     }
 
     //Ищем пробел в записи списка
-    public boolean isSpacePresented(String string) {
+    public boolean isSpacePresented(String string) throws InvalidInputException {
         boolean result = false;
         if (string.contains(" ")) {
             result = true;
         } else {
-            System.out.println("Please correct string " + string + ". Incorrect input data.");
+            throw new InvalidInputException("Please correct string " + string + ". Incorrect input data.");
         }
         return result;
     }
 
     //Выделяем тип животного из записи списка
-    private String getAnimal(String string) {
-        String[] animals = string.split(" ");
-        return animals[0];
+    private String getAnimal(String string) throws InvalidInputException {
+        String result = "";
+        if (isSpacePresented(string)) {
+            String[] animals = string.split(" ");
+            result = animals[0];
+        }
+        return result;
     }
 
     //Создаём множество уникальных имен
-    HashSet<String> uniqueNames () {
+    HashSet<String> uniqueNames () throws InvalidInputException {
         HashSet<String> uniqueAnimals = new HashSet<>();
 
         for (String farmAnimal : farmAnimals) {
@@ -59,7 +63,7 @@ public class AnimalFarm {
     }
 
     //Считаем количество животных одного типа в списке
-    private Integer counter (String animal) {
+    private Integer counter (String animal) throws InvalidInputException {
         Integer result = 0;
 
         for (String farmAnimal : farmAnimals) {
@@ -71,7 +75,7 @@ public class AnimalFarm {
     }
 
     //Создаем хэш-таблицу с количеством животных на ферме
-    HashMap<String, Integer> countedAnimals () {
+    HashMap<String, Integer> countedAnimals () throws InvalidInputException {
         HashMap<String, Integer> animalsCounter = new HashMap<>();
 
         for (String farmAnimal : farmAnimals) {
@@ -80,7 +84,7 @@ public class AnimalFarm {
 
                 animalsCounter.put(getAnimal(farmAnimal), counter(farmAnimal));
             } else {
-                System.out.println("Please correct string " + farmAnimal + ". Incorrect input data.");
+                throw new InvalidInputException("Please correct string " + farmAnimal + ". Incorrect input data.");
             }
 
         }
